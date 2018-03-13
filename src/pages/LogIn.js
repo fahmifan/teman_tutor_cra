@@ -6,8 +6,9 @@ import { Navbar, Input, Text, ButtonWide } from '../components';
 import style from '../assets/style';
 
 const Container = styled.div`
+  box-sizing: border-box;
   width: 450px;
-  height: 500px;
+  height: 485px;
   background-color: ${style.colors.white};
   margin: 0 auto;
   margin-top: 64px;
