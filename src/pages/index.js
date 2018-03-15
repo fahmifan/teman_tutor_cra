@@ -3,3 +3,4 @@ export {LogIn} from './LogIn';
 export {SignUp} from './SignUp';
 export {Home} from './Home';
 export {Timeline} from './Timeline';
+export {Explore} from './Explore';

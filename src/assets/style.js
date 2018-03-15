@@ -5,6 +5,7 @@ export const paleNight = '#2541B2'
 export const paleBlue = '#1768AC'
 export const skyBlue = '#06BEE1'
 export const green = '#33C15D'
+export const grey = '#828282'
 
 export const colors = {
   white,
@@ -14,6 +15,7 @@ export const colors = {
   paleBlue,
   skyBlue,
   green,
+  grey,
 }
 
 export const space = [
@@ -30,6 +32,7 @@ export const fontSize = [
   24,
   36,
 ]
+
 
 const styles = {
   bold: 700,
