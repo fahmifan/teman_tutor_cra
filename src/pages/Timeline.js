@@ -10,6 +10,7 @@ import {
   Timelog,
   ButtonWide,
   Text,
+  NotifCard,
 } from '../components';
 
 const Main = styled.div`
@@ -38,6 +39,7 @@ export class Timeline extends Component {
     return (
       <Auxi>
         <NavbarSigned />
+        <NotifCard />
         <Background>
           <Main>
             <ButtonWide width={195} color={style.colors.paleBlue} selfEnd timeline shadow>Buat agenda</ButtonWide>
