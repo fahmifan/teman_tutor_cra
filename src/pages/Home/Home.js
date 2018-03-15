@@ -6,12 +6,13 @@ import {
   NavbarSigned,
   Background,
 } from '../../components';
-import {LeftContent} from './LeftContent';
+import {GroupCard} from './LeftContent';
 import Auxi from '../../hoc/Auxi';
 
 const Left = styled.div`
   box-sizing: border-box;
   width: 265px;
+  padding-top: 30px;
   background: linear-gradient(180deg, #03256C -24.11%, #2541B2 100%);
 `
 
@@ -43,7 +44,10 @@ export class Home extends Component {
         <Background paddingNul>
           <Container>
             <Left>
-              <LeftContent />
+              <GroupCard />
+              <GroupCard />
+              <GroupCard />
+              <GroupCard />
             </Left>
             <Middle>Middle</Middle>
             <Right>Right</Right>
