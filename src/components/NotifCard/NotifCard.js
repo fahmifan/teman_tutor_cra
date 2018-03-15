@@ -8,15 +8,12 @@ const Container = styled.div`
   box-sizing: border-box;
   width: 236px;
   height: 71px;
-  position: absolute;
-  right: 0;
-  margin-right: 30px;
   background-color: #F2F2F2;
   padding-left: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
-  box-shadow: 0px 2px 5px rgba(68,68,68,0.6);
-  z-index: 1;
+  position: relative;
+  border-bottom: 1px solid #eee;
 `
 
 const BtnSmall = styled.button`
