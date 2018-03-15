@@ -19,7 +19,8 @@ const Nav = styled.nav`
   padding-left: ${styles.space[2]}px;
   padding-right: ${styles.space[2]}px;
   box-shadow: 0px 4px 4px rgba(68,68,68,0.6);
-  z-index: 2;
+  position: relative;
+  z-index: 99;
 `
 
 const NavIconContainer = styled.div`
