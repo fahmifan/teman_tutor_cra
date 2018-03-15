@@ -5,7 +5,8 @@ import {
   LandingPage, 
   LogIn, 
   SignUp,
-  Home, 
+  Home,
+  Timeline,
 } from './pages';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
+          <Route path="/timeline" component={Timeline} />
           <Route path="/login" component={LogIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/home" component={Home} />
