@@ -40,7 +40,7 @@ export class Timeline extends Component {
         <NavbarSigned />
         <Background>
           <Main>
-            <ButtonWide width={195} color={style.colors.paleBlue} selfEnd timeline >Buat agenda</ButtonWide>
+            <ButtonWide width={195} color={style.colors.paleBlue} selfEnd timeline shadow>Buat agenda</ButtonWide>
             <Text timeline fontSize={style.fontSize[2]} color={style.colors.black} >Maret</Text>
             <Line />
             <Timelog />
