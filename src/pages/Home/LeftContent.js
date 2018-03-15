@@ -5,7 +5,7 @@ import {Text} from '../../components';
 import personIcon from '../../assets/icons/person-icon.svg';
 import style from '../../assets/style';
 
-const GroupCard = styled.div`
+const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 64px;
@@ -39,8 +39,8 @@ const Status = styled.div`
   margin-left: ${props => props.ml || 2}px;
 `
 
-export const LeftContent = props => (
-  <GroupCard>
+export const GroupCard = props => (
+  <Container>
     <ProfilPic />
     <Status ml={'8'}>
       <Text bold padding="2" color={style.colors.white} fontSize={style.fontSize[1]} >Group Belajar</Text>
@@ -49,5 +49,5 @@ export const LeftContent = props => (
         <Text bold padding="2" color={style.colors.white} fontSize={style.fontSize[0]} >60</Text>
       </Status>
     </Status>
-  </GroupCard>
+  </Container>
 );
