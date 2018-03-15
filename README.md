@@ -5,4 +5,4 @@
 - [x] Sign up page
 - [ ] Home page
 - [ ] Explore page
-- [ ] Timeline page
+- [x] Timeline page
