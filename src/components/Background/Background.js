@@ -8,5 +8,6 @@ export const Background = styled.div`
   background-color: #fbfbfb;
   margin: 0 auto;
   padding-top: 10px;
-  z-index: -1;
+  ${props => props.paddingNul && 'padding-top: 0px;'}
+  z-index: 0;
 `
