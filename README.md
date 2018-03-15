@@ -4,5 +4,5 @@
 - [x] Login page
 - [x] Sign up page
 - [ ] Home page
-- [ ] Explore page
+- [X] Explore page
 - [x] Timeline page
