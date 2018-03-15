@@ -6,14 +6,15 @@ export const ButtonWide = styled.button`
   box-sizing: border-box;
   border: none;
   border-radius: 5px;
-  background-color: ${style.colors.skyBlue};
+  background-color: ${props => props.color || style.colors.skyBlue};
   height: 40px;
-  width: 335px;
+  width: ${props => props.width || 335}px;
   color: ${style.colors.white};
   font-size: ${style.fontSize[1]}px;
   margin-top: ${style.space[2]}px;
   font-weight: 700;
   outline: none;
+  ${props => props.selfEnd && 'align-self: flex-end;'}
   &:hover {
     cursor: pointer;
     opacity: 0.8;
