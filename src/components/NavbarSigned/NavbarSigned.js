@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 import styles from '../../assets/style';
 import { Text } from '../index';
-import clockIcon from '../../assets/icons/clock.png';
-import teleskopIcon from '../../assets/icons/teleskop.png';
-import houseIcon from '../../assets/icons/house.png';
+import clockIcon from '../../assets/icons/clock-icon.svg';
+import teleskopIcon from '../../assets/icons/teleskop-icon.svg';
+import houseIcon from '../../assets/icons/house-icon.svg';
+import bellIcon from  '../../assets/icons/bell-icon.svg';
 
 const Nav = styled.nav`
   height: 68px;
@@ -17,6 +18,8 @@ const Nav = styled.nav`
   align-items: center;
   padding-left: ${styles.space[2]}px;
   padding-right: ${styles.space[2]}px;
+  box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+  z-index: 100;
 `
 
 const NavIconContainer = styled.div`
@@ -44,11 +47,17 @@ const NavIcon = styled.div`
 
 const RightText = styled.div`
   display: flex;
+  align-items: center;
   justify-content: flex-end;
 `
 
-const Container = styled.div`
-
+const Profile = styled.div`
+  width: 30px;
+  height: 30px;
+  border: 3px solid #333;
+  border-radius: 100%;
+  text-align: center;
+  margin-left: 8px;
 `
 
 export const NavbarSigned = props => {
@@ -70,10 +79,9 @@ export const NavbarSigned = props => {
         </NavIcon>
       </NavIconContainer>
       <RightText>
-        <Text bold color={styles.colors.skyBlue}>Buat Grup</Text>
-        <Text color={styles.colors.black} opacity={0.5}>|</Text>
-        <Text color={styles.colors.paleBlue}>Log in</Text>
-        <Text color={styles.colors.paleBlue}>Sign up</Text>
+        <img src={bellIcon} />
+        <Text bold color={styles.colors.skyBlue} fontSize={styles.fontSize[1]} >Buat Grup</Text>
+        <Profile><span>J</span></Profile>
       </RightText>
     </Nav>
   );
