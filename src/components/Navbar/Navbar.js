@@ -12,6 +12,8 @@ const Nav = styled.nav`
   align-items: center;
   padding-left: ${styles.space[2]}px;
   padding-right: ${styles.space[2]}px;
+  box-shadow: 0px 5px 5px rgba(68,68,68,0.6);
+  z-index: 2;
 `
 
 const RightText = styled.div`
