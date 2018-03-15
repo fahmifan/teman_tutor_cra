@@ -24,10 +24,10 @@ export const Navbar = props => {
     <Nav>
       <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleNight}>temanTutor</Text>
       <RightText>
-        <Text bold color={styles.colors.skyBlue}>Buat Grup</Text>
-        <Text color={styles.colors.black} opacity={0.5}>|</Text>
-        <Text color={styles.colors.paleBlue}>Log in</Text>
-        <Text color={styles.colors.paleBlue}>Sign up</Text>
+        <Text fontSize={styles.fontSize[1]} bold color={styles.colors.skyBlue}>Buat Grup</Text>
+        <Text fontSize={styles.fontSize[1]} color={styles.colors.black} opacity={0.5}>|</Text>
+        <Text fontSize={styles.fontSize[1]} color={styles.colors.paleBlue}>Log in</Text>
+        <Text fontSize={styles.fontSize[1]} color={styles.colors.paleBlue}>Sign up</Text>
       </RightText>
     </Nav>
   );
