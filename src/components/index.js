@@ -8,3 +8,4 @@ export { Eventlog, Timelog } from './Eventlog/Eventlog';
 export { Background } from './Background/Background';
 export { ButtonMedium } from './ButtonMedium/ButtonMedium';
 export { GroupTutorBox } from './GroupTutorBox/GroupTutorBox';
+export { NotifCard } from './NotifCard/NotifCard';

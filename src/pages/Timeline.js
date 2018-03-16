@@ -10,6 +10,7 @@ import {
   Timelog,
   ButtonWide,
   Text,
+  NotifCard,
 } from '../components';
 
 const Main = styled.div`
@@ -33,14 +34,27 @@ const Line = styled.div`
   margin-bottom: 20px; 
 `
 
+const NotifContainer = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  margin-right: 30px;
+  box-shadow: 0px 2px 5px rgba(68,68,68,0.6);
+`
+
 export class Timeline extends Component {
   render() {
     return (
       <Auxi>
         <NavbarSigned />
+        <NotifContainer>
+          <NotifCard />
+          <NotifCard />
+          <NotifCard />
+        </NotifContainer>
         <Background>
           <Main>
-            <ButtonWide width={195} color={style.colors.paleBlue} selfEnd timeline >Buat agenda</ButtonWide>
+            <ButtonWide width={195} color={style.colors.paleBlue} selfEnd timeline shadow>Buat agenda</ButtonWide>
             <Text timeline fontSize={style.fontSize[2]} color={style.colors.black} >Maret</Text>
             <Line />
             <Timelog />
