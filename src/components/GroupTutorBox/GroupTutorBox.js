@@ -13,6 +13,7 @@ const Container = styled.div`
   width: 260px;
   height: 330px;
   background-color: ${styles.colors.white};
+  border-radius: 5px;
   padding: 0;
   margin: 15px 20px;
   display: flex;
@@ -29,6 +30,7 @@ const BoxImage = styled.div`
     margin: 0;
     background-size: cover;
     background-image: url(${GroupTutorBoxImage});
+    border-radius: 5px 5px 0px 0px;
 `
 const BoxIcon = styled.div`
     position: absolute;
@@ -46,7 +48,7 @@ const Div = styled.div`
     position: absolute;
     bottom: 20px;
     display: flex;
-    pading: 0;
+    padding: 0px;
     flex-direction: column;
     align-items: center;
 `
