@@ -8,6 +8,7 @@ import {
 } from '../../components';
 import {GroupCard} from './LeftContent';
 import MiddleContent from './MiddleContent';
+import RightContent from './RightContent';
 import Auxi from '../../hoc/Auxi';
 
 const Left = styled.div`
@@ -31,7 +32,7 @@ const Right = styled.div`
 const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: space-between;
   z-index: 1; 
@@ -53,7 +54,9 @@ export class Home extends Component {
             <Middle>
               <MiddleContent />
             </Middle>
-            <Right>Right</Right>
+            <Right>
+              <RightContent />
+            </Right>
           </Container>
         </Background>
       </Auxi>
