@@ -7,6 +7,7 @@ import {
   Background,
 } from '../../components';
 import {GroupCard} from './LeftContent';
+import MiddleContent from './MiddleContent';
 import Auxi from '../../hoc/Auxi';
 
 const Left = styled.div`
@@ -49,11 +50,13 @@ export class Home extends Component {
               <GroupCard />
               <GroupCard />
             </Left>
-            <Middle>Middle</Middle>
+            <Middle>
+              <MiddleContent />
+            </Middle>
             <Right>Right</Right>
           </Container>
         </Background>
       </Auxi>
     );
   }
-} 
+}
