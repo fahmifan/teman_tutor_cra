@@ -36,8 +36,9 @@ const Line = styled.div`
 
 const NotifContainer = styled.div`
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   right: 0;
+  z-index: 3;
   margin-right: 30px;
   box-shadow: 0px 2px 5px rgba(68,68,68,0.6);
 `
