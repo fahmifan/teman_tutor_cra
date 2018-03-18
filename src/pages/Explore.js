@@ -14,15 +14,29 @@ import {
 const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   box-sizing: border-box;
   width: 1000px;
-  margin: 20px auto;
-  margin-top: 110px;
+  margin: 0 auto ;
+  margin-top: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
   position: relative;
 `
+
+export const TemanTutorGroup = props => {
+  return (
+    <Container>
+        <GroupTutorBox />
+        <GroupTutorBox />
+        <GroupTutorBox />
+        <GroupTutorBox />
+        <GroupTutorBox />
+        <GroupTutorBox />
+    </Container>      
+  );
+}
 
 
 export class Explore extends Component {
@@ -31,6 +45,7 @@ export class Explore extends Component {
       <Auxi>
         <NavbarSigned />
         <SearchInput placeholder="Search.." />
+        <br/><br/><br/><br/>
         <Container>
             <GroupTutorBox />
             <GroupTutorBox />
