@@ -4,9 +4,11 @@ const loginStart = () => ({
     type: types.LOGIN_START,
 })
 
-const loginSuccess = (credentials) => ({
+const loginSuccess = ({token, id, email}) => ({
     type: types.LOGIN_SUCCESS,
-    credetials: credentials,
+    token: token,
+    id: id,
+    email: email,
 })
 
 const loginFailed = (error) => ({
