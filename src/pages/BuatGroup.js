@@ -66,7 +66,7 @@ const BuatGrup = props => {
   return (
     <Auxi>
       <NavbarSigned />
-      <BuatGrupForm>
+      <BuatGrupForm onSubmit={handleSubmit}>
         <HeaderImage>
           <BoxIcon />
         </HeaderImage>
