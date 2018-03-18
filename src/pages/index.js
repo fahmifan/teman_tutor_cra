@@ -4,3 +4,4 @@ export {SignUp} from './SignUp';
 export {Home} from './Home/Home';
 export {Timeline} from './Timeline';
 export {Explore} from './Explore';
+export {default as BuatGrup} from './BuatGroup';
