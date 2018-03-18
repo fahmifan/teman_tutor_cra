@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 import { withFormik } from 'formik';
 import Yup from 'yup';
 
+import axios from '../axios';
 import style from '../assets/style';
 import Auxi from '../hoc/Auxi';
 import { 
@@ -106,11 +108,32 @@ const EnhancedForm = withFormik({
   }),
 
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log(values)
-    props.login(values)
+    axios({
+      url: '/groups',
+      method: 'POST',
+      data: {
+        "id": props.userId,
+        "token": props.token,
+        "name": values.namaGrup,
+        "desc": values.deskripsi,
+      }
+    })
+    .then(response => {
+      props.history.push('/home')
+    })
+    .catch(error => {
+      console.log(error)
+    })
   },
   
   displayName: 'Basic Form', 
 })(BuatGrup)
 
-export default EnhancedForm;
+const mapStateToProps = ({auth}) => {
+  return {
+    userId: auth.user.id,
+    token: auth.user.token,
+  }
+}
+
+export default connect(mapStateToProps, null)(EnhancedForm);
