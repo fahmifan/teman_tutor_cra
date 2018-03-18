@@ -5,22 +5,9 @@ import Yup from 'yup';
 import {connect} from 'react-redux';
 
 import Auxi from '../hoc/Auxi';
-import { Navbar, Input, Text, ButtonWide } from '../components';
+import { Navbar, Input, Text, ButtonWide, Form } from '../components';
 import style from '../assets/style';
 import { operations } from '../store/ducks/auth'
-
-const Form = styled.form`
-  box-sizing: border-box;
-  width: 450px;
-  height: 485px;
-  background-color: ${style.colors.white};
-  margin: 0 auto;
-  margin-top: 30px;
-  padding-top: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
 
 class Login extends Component {
   render() {

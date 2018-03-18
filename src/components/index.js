@@ -9,3 +9,4 @@ export { Background } from './Background/Background';
 export { ButtonMedium } from './ButtonMedium/ButtonMedium';
 export { GroupTutorBox } from './GroupTutorBox/GroupTutorBox';
 export { NotifCard } from './NotifCard/NotifCard';
+export {default as Form} from './Form/Form';
