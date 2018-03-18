@@ -8,6 +8,7 @@ import {
   Home,
   Timeline,
   Explore,
+  BuatGrup,
 } from './pages';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/login" component={LogIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/home" component={Home} />
+          <Route path="/buatgrup" component={BuatGrup} />
           <Route path="/" component={LandingPage} />
         </Switch>
       </BrowserRouter>
