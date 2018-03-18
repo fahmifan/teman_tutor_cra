@@ -3,6 +3,7 @@
 
 ### Global
 - [x] User dapat berpindah dari satu halamn ke halaman lain
+- [ ] User dapat melihat notifikasi undangan menjadi tutor
 
 ### Auth
 - [ ] User dapat login
@@ -13,7 +14,7 @@
 - [ ] User dapat `join` ke suatu grup
 - [x] Authenticated User dapat membuat grup 
 - [x] User dapat melihat grup2 yg ada
--- Explore
+    - Explore
 
 ### Home
 - [ ] User dapat membuat agenda
@@ -30,3 +31,4 @@
 - [X] Explore page
 - [x] Timeline page
 - [x] Buat Grup
+
