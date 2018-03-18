@@ -1,6 +1,6 @@
 # WIP temanTutor frontend development
-## User Stories
 
+## User Stories
 ### Global
 - [x] User dapat berpindah dari satu halamn ke halaman lain
 - [ ] User dapat melihat notifikasi undangan menjadi tutor
