@@ -6,7 +6,7 @@ const login = ({email, password}) => {
   return dispatch => {
       dispatch(actions.loginStart())
       axios({
-        url:  '/auth', 
+        url:  '/login', 
         method: 'POST',
         data: {
           "email": email,
