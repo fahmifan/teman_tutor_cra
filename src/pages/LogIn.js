@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import styled from 'styled-components';
 import { withFormik } from 'formik';
 import Yup from 'yup';
@@ -15,7 +16,12 @@ class Login extends Component {
       values,
       handleChange,
       handleSubmit,
+      isAuth,
     } = this.props;
+
+    if(isAuth) {
+      return <Redirect to="/explore" />
+    }
 
     return (
       <Auxi>
@@ -62,4 +68,8 @@ const mapDispatchToProps = (dispatch) => ({
   login: (values) => dispatch(operations.login(values))
 })
 
-export default connect(null, mapDispatchToProps)(EnhancedForm)
+const mapStateToProps = ({auth}) => ({
+  isAuth: auth.login.isAuth,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EnhancedForm)
