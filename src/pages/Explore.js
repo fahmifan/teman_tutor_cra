@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+import { operations } from '../store/ducks/group'
 import axios from '../axios';
 import Auxi from '../hoc/Auxi';
 import style from '../assets/style';
@@ -29,53 +30,58 @@ const Container = styled.div`
 export class Explore extends Component {
   
   state = {
-    groups: [],
-    loading: false,
+    joinedGroups: null,
   }
 
   componentDidMount() {
-    this.fetchGroups();
+    this.props.fetchGroups();
+    this.getUserGroups(this.props.userId, this.props.token);
   }
 
-  fetchGroups = () => {
-    this.setState({loading: true})
+  getUserGroups = (userId, token) => {
     axios({
-      url: '/groups',
+      url: `/users/${userId}/groups`,
       method: 'GET',
-    })
-    .then(response => {
-      this.setState({
-        loading: false,
-        groups: response.data
-      })
-    })
-  }
-
-  handleJoin = (id) => {
-    console.log(`you joined group ${id}`);
-    axios({
-      url: `/groups/${id}/${4}`,
-      method: 'POST',
-      data: {
-        // 'group_id': id,
-        // 'user_id': this.props.userId,        
-        "group_id": 1,
-        "user_id": 4,
-        "token": 'h4GfDlYvSlNigJBUb76JZLx7ZbD06LtAco01BhKVXNaN5KN5MQMdN1dfwzuk',
+      headers: {
+        'remember_token': token,
       }
     })
+    .then(response => {
+      console.log("joinedGroups", response.data)
+      this.setState({
+        joinedGroups: [...response.data],
+      })
+    })
+    .catch(error => {
+
+    })
+  }
+
+  handleJoin = (groupId) => {
+    console.log(`you joined group ${groupId}`);
+    const  {
+      token,
+      userId,
+    } = this.props
+    
+    this.props.joinGroup({groupId, token, userId})
   }
 
   render() {
     let groupList = <Text fontSize="24" style={{textAlign: 'center'}}>Loading...</Text>
 
-    if(!this.state.loading) {
-      groupList = this.state.groups.map(group => (
+    if(!this.props.isLoading) {
+      groupList = this.props.groups.map((group, i) => (
         <GroupTutorBox
           key={group.id}
           name={group.name}
           desc={group.desc}
           join={() => this.handleJoin(group.id)}
+          isJoined={
+            this.state.joinedGroups !== null
+            // this is still not worked. Need to figure it out 
+            && this.state.joinedGroups.filter(joinedGroup => joinedGroup.id === group.id)            
+          }
         />
       ));  
     }
@@ -92,12 +98,19 @@ export class Explore extends Component {
   }
 }
 
-const mapStateToProps = ({auth}) => {
-  return {
-    token: auth.user.token,
-    userId: auth.user.id,
-    isAuth: auth.user.token !== null,
+const mapDispatchToProps = dispatch => ({
+  joinGroup: val => dispatch(operations.handleJoinGroup(val)),
+  fetchGroups: () => dispatch(operations.fetchGroups()),
+})
+
+const mapStateToProps = ({auth, group}) => {
+    return {
+      token: auth.login.user.token,
+      userId: auth.login.user.id,
+      isAuth: auth.login.isAuth,
+      groups: group.fetchGroups.groups,
+      isLoading: group.fetchGroups.isLoading,
   }
 }
 
-export default connect(mapStateToProps, null)(Explore)
+export default connect(mapStateToProps, mapDispatchToProps)(Explore)
