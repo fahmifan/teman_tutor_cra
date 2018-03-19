@@ -1,9 +1,11 @@
+import { combineReducers } from 'redux'
 import  types from './types'
 
 const initState = {
     error: null,
     loading: false,
     status: null,
+    isAuth: false,
     user: {
         id: null,
         token: null,
@@ -11,7 +13,7 @@ const initState = {
     },
 }
 
-const reducer = (state = initState, action) => {
+const loginReducer = (state = initState, action) => {
     switch(action.type) {
         case types.LOGIN_START: return {
             ...state,
@@ -22,6 +24,7 @@ const reducer = (state = initState, action) => {
             loading: false,
             error: null,
             status: action.status,
+            isAuth: true,
             user: {
                 ...state.user,
                 token: action.token,
@@ -33,6 +36,8 @@ const reducer = (state = initState, action) => {
             ...state,
             loading: false,
             error: action.error,
+            isAuth: false,
+            status: 'login_failed',
             user: {
                 ...state.user,
                 token: null,
@@ -43,5 +48,9 @@ const reducer = (state = initState, action) => {
         default: return state
     }
 }
+
+const reducer = combineReducers({
+    login: loginReducer,
+})
 
 export default reducer;
