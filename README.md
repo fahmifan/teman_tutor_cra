@@ -33,7 +33,6 @@
 - [ ] Landing page
 - [ ] Create Agenda
 - [ ] Invite a tutor
-- [ ] 
 - [x] Login page
 - [x] Notification Card
 - [x] Sign up page
