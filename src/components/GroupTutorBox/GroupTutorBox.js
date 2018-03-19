@@ -61,7 +61,7 @@ const Title = styled.h1`
   margin-bottom: 12px;
   padding: 0 15px;
 `
-export const GroupTutorBox = ({name, desc, join}) => {
+export const GroupTutorBox = ({name, desc, join, isJoined}) => {
   return (
     <Container>
       <BoxImage />
@@ -69,7 +69,7 @@ export const GroupTutorBox = ({name, desc, join}) => {
       <Div>
         <Text color={styles.colors.skyBlue} bold fontSize={20}>{ name || 'Teman Tutor Group'}</Text>
         <Title>{ desc || 'Discussion about teman tutor vision for better community'}</Title>
-        <ButtonMedium onClick={join}>Join</ButtonMedium>
+        <ButtonMedium onClick={join} isJoined={isJoined}>Join</ButtonMedium>
       </Div>
     </Container>    
       
