@@ -87,7 +87,7 @@ export const SignUp =  withFormik({
     confirmPassword: Yup.string().equalTo(Yup.ref('password'), 'Password must match').required('Required')
   }),
 
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, {props, setSubmitting }) => {
     axios({
       url: '/users',
       method: 'post',
@@ -98,7 +98,7 @@ export const SignUp =  withFormik({
       },
     })
     .then(response => {
-      console.log(response);
+      props.history.push('/login');
     })
     .catch(error => {
       console.log(error);
