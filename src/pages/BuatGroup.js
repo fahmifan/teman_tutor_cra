@@ -113,7 +113,7 @@ const EnhancedForm = withFormik({
       method: 'POST',
       data: {
         "id": props.userId,
-        "token": props.token,
+        "remember_token": props.token,
         "name": values.namaGrup,
         "desc": values.deskripsi,
       }

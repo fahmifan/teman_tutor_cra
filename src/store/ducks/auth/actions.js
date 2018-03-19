@@ -4,11 +4,12 @@ const loginStart = () => ({
     type: types.LOGIN_START,
 })
 
-const loginSuccess = ({token, id, email}) => ({
+const loginSuccess = ({status, user}) => ({
     type: types.LOGIN_SUCCESS,
-    token: token,
-    id: id,
-    email: email,
+    token: user.remember_token,
+    id: user.id,
+    email: user.email,
+    status: status,
 })
 
 const loginFailed = (error) => ({
@@ -19,4 +20,5 @@ const loginFailed = (error) => ({
 export default {
     loginStart,
     loginFailed,
+    loginSuccess,
 }

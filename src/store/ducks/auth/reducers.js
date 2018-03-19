@@ -3,9 +3,10 @@ import  types from './types'
 const initState = {
     error: null,
     loading: false,
+    status: null,
     user: {
-        id: 4,
-        token: 'h4GfDlYvSlNigJBUb76JZLx7ZbD06LtAco01BhKVXNaN5KN5MQMdN1dfwzuk',
+        id: null,
+        token: null,
         email: null,
     },
 }
@@ -20,10 +21,11 @@ const reducer = (state = initState, action) => {
             ...state,
             loading: false,
             error: null,
+            status: action.status,
             user: {
                 ...state.user,
                 token: action.token,
-                id: action,
+                id: action.id,
                 email: action.email,    
             }
         }
