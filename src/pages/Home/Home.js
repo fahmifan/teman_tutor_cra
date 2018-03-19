@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
+import axios from '../../axios';
 import style from '../../assets/style';
 import { 
   NavbarSigned,
@@ -39,17 +41,57 @@ const Container = styled.div`
 `
 
 export class Home extends Component {
+
+  state = {
+    joinedGroups: null,
+  }
+
+  getUserGroups = (userId, token) => {
+    axios({
+      url: `/users/${userId}/groups`,
+      method: 'GET',
+      headers: {
+        'remember_token': token,
+      }
+    })
+    .then(response => {
+      console.log("joinedGroups", response.data)
+      this.setState({
+        joinedGroups: [...response.data],
+      })
+    })
+    .catch(error => {
+
+    })
+  }
+  
+  componentDidMount() {
+    const {
+      userId,
+      token,
+    } = this.props
+
+    this.getUserGroups(userId, token);
+  }
+
   render() {
+  let groups = null;
+    if(this.state.joinedGroups !== null) {
+      groups = this.state.joinedGroups.map(group => {
+        return <GroupCard 
+          key={group.id}
+          name={group.name}
+          desc={group.desc} />
+      })
+    }
+
     return (
       <Auxi>
         <NavbarSigned />
         <Background paddingNul>
           <Container>
             <Left>
-              <GroupCard />
-              <GroupCard />
-              <GroupCard />
-              <GroupCard />
+              {groups}
             </Left>
             <Middle>
               <MiddleContent />
@@ -63,3 +105,10 @@ export class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = ({auth}) => ({
+  userId: auth.login.user.id,
+  token: auth.login.user.token,
+})
+
+export default connect(mapStateToProps, null)(Home);
