@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import styles from '../../assets/style';
 import { Text } from '../index';
@@ -21,6 +22,9 @@ const Nav = styled.nav`
   box-shadow: 0px 4px 4px rgba(68,68,68,0.6);
   position: relative;
   z-index: 99;
+  a {
+    text-decoration: none;
+  }
 `
 
 const NavIconContainer = styled.div`
@@ -64,24 +68,34 @@ const Profile = styled.div`
 export const NavbarSigned = props => {
   return (
     <Nav>
-      <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleNight}>temanTutor</Text>
+      <Link to="/">
+        <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleNight}>temanTutor</Text>
+      </Link>
       <NavIconContainer>
-        <NavIcon>
-          <img src={houseIcon} />
-          <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleBlue}>Home</Text>
-        </NavIcon>
-        <NavIcon>
-          <img src={teleskopIcon} />
-          <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleBlue}>Explore</Text>
-        </NavIcon>
-        <NavIcon>
-          <img src={clockIcon} />
-          <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleBlue}>Timeline</Text>
-        </NavIcon>
+        <Link to="/home">
+          <NavIcon>
+            <img src={houseIcon} />
+            <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleBlue}>Home</Text>
+          </NavIcon>
+        </Link>
+        <Link to="/explore">
+          <NavIcon>
+            <img src={teleskopIcon} />
+            <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleBlue}>Explore</Text>
+          </NavIcon>
+        </Link>
+        <Link to="/timeline">
+          <NavIcon>
+            <img src={clockIcon} />
+            <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleBlue}>Timeline</Text>
+          </NavIcon>
+        </Link>
       </NavIconContainer>
       <RightText>
         <img src={bellIcon} />
-        <Text bold color={styles.colors.skyBlue} fontSize={styles.fontSize[1]} >Buat Grup</Text>
+        <Link to="/buatgrup">
+          <Text bold color={styles.colors.skyBlue} fontSize={styles.fontSize[1]} >Buat Grup</Text>
+        </Link>
         <Profile><span>J</span></Profile>
       </RightText>
     </Nav>

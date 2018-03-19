@@ -11,3 +11,4 @@ export { ButtonLanding } from './ButtonLanding/ButtonLanding';
 export { GroupTutorBox } from './GroupTutorBox/GroupTutorBox';
 export { NotifCard } from './NotifCard/NotifCard';
 export { TemanTutorGroup } from '../pages/Explore';
+export {default as Form} from './Form/Form';

@@ -13,6 +13,7 @@ const Container = styled.div`
   width: 260px;
   height: 330px;
   background-color: ${styles.colors.white};
+  border-radius: 5px;
   padding: 0;
   margin: 20px 30px;
   display: flex;
@@ -34,6 +35,7 @@ const BoxImage = styled.div`
     margin: 0;
     background-size: cover;
     background-image: url(${GroupTutorBoxImage});
+    border-radius: 5px 5px 0px 0px;
 `
 const BoxIcon = styled.div`
     position: absolute;
@@ -51,9 +53,10 @@ const Div = styled.div`
     position: absolute;
     bottom: 20px;
     display: flex;
-    pading: 0;
+    padding: 0px;
     flex-direction: column;
     align-items: center;
+    word-break:break-all;
 `
 const Title = styled.h1`
   font-size: 18px;
@@ -63,17 +66,17 @@ const Title = styled.h1`
   margin-bottom: 12px;
   padding: 0 15px;
 `
-export const GroupTutorBox = props => {
+export const GroupTutorBox = ({name, desc, join}) => {
   return (
-        <Container>
-          <BoxImage />
-          <BoxIcon />
-          <Div>
-            <Text color={styles.colors.skyBlue} bold fontSize={20}>Teman Tutor Group</Text>
-            <Title>Discussion about teman tutor vision for better community</Title>
-            <ButtonMedium>Join</ButtonMedium>
-          </Div>
-        </Container>    
+    <Container>
+      <BoxImage />
+      <BoxIcon />
+      <Div>
+        <Text color={styles.colors.skyBlue} bold fontSize={20}>{ name || 'Teman Tutor Group'}</Text>
+        <Title>{ desc || 'Discussion about teman tutor vision for better community'}</Title>
+        <ButtonMedium onClick={join}>Join</ButtonMedium>
+      </Div>
+    </Container>    
       
   );
 }

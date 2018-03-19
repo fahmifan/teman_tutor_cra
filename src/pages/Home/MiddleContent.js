@@ -66,6 +66,7 @@ export const InputMessage = styled.input`
   height: 50px;
   border: none;
   border-bottom: 1px solid #2541B2;
+  background-color: #fbfbfb;
   margin-bottom: 5px;
   &:focus {
     outline: none;
