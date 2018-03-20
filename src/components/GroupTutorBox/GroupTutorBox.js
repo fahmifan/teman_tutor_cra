@@ -15,15 +15,20 @@ const Container = styled.div`
   background-color: ${styles.colors.white};
   border-radius: 5px;
   padding: 0;
-  margin: 15px 20px;
+  margin: 20px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-left: ${styles.space[2]}px;
   padding-right: ${styles.space[2]}px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 15px 0px rgba(136,136,136,1);
+  -webkit-box-shadow: 3px 3px 15px 0px rgba(136,136,136,1);
 `
 
 const BoxImage = styled.div`
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     width: 260px;
     height: 110px; 
     padding: 0;

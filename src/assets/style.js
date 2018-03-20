@@ -6,6 +6,7 @@ export const paleBlue = '#1768AC'
 export const skyBlue = '#06BEE1'
 export const green = '#33C15D'
 export const grey = '#828282'
+export const darkgrey = '#41464b'
 
 export const colors = {
   white,
@@ -16,6 +17,7 @@ export const colors = {
   skyBlue,
   green,
   grey,
+  darkgrey,
 }
 
 export const space = [
