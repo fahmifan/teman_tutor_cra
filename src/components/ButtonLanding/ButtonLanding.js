@@ -4,7 +4,7 @@ import style from '../../assets/style';
 
 export const ButtonLanding = styled.button`  
   box-sizing: border-box;
-  border: 1ps solid #fff;
+  border: 1px solid #fff;
   border-radius: 5px;
   background-color: rgba(0,0,0,0);
   height: 50px;

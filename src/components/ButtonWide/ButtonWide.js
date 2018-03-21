@@ -11,7 +11,7 @@ export const ButtonWide = styled.button`
   width: ${props => props.width || 335}px;
   color: ${style.colors.white};
   font-size: ${style.fontSize[1]}px;
-  margin-top: ${style.space[2]}px;
+  margin-top: ${style.space[2]}px;  
   font-weight: 700;
   outline: none;
   ${props => props.selfEnd && 'align-self: flex-end;'}
