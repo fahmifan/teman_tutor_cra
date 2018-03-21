@@ -45,6 +45,18 @@ const loginReducer = (state = initState, action) => {
                 email: null,
             }
         }
+        case types.LOGOUT: return {
+            ...state,
+            loading: false,
+            error: null,
+            isAuth: false,
+            user: {
+                ...state.user,
+                token: null,
+                id: null,
+                email: null,
+            }
+        }
         default: return state
     }
 }
