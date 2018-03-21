@@ -10,13 +10,17 @@
 - [ ] User dapat melihat daftar chat masin2 grup
 - [ ] User dapat melihat anggota2 dari grup yg dia ikuti
 
+### Group
+- [x] User dapat menambahkan grup baru
+- [ ] 
+
 ### Timeline
 - [ ] User dapat membuat agenda
 - [ ] User dapat melihat agenda yg ada setiap bulan
 - [ ] User dapat menambahkan agenda
 
 ### Auth
-- [ ] User login otomatis bila belum logout
+- [x] User login otomatis bila belum logout
 - [x] User dapat login
 - [ ] User dapat logout
 - [x] User dapat membuat akun
@@ -31,9 +35,9 @@
 - [ ] User dapat menginvite tutor ke grupnya
 
 ### Static Page & Mockup
-- [x] Landing page
 - [ ] Create Agenda
 - [ ] Invite a tutor
+- [x] Landing page
 - [x] Login page
 - [x] Notification Card
 - [x] Sign up page
