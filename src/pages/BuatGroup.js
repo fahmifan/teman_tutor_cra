@@ -1,8 +1,13 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import styled from 'styled-components';
 import { withFormik } from 'formik';
 import Yup from 'yup';
+import Select from 'react-virtualized-select';
+import "react-select/dist/react-select.css";
+import "react-virtualized/styles.css";
+import "react-virtualized-select/styles.css";
 
 import axios from '../axios';
 import style from '../assets/style';
@@ -13,6 +18,7 @@ import {
   ButtonWide,
   Form
 } from '../components';
+import { operations as authOperations } from '../store/ducks/auth'
 
 const BuatGrupForm = Form.extend`
   width: 725px;
@@ -58,48 +64,101 @@ const BuatGrupBtn = ButtonWide.extend`
     width: 250px;
 `
 
-const BuatGrup = props => {
-  const {
-    values,
-    handleChange,
-    handleSubmit,
-  } = props;
+class BuatGrup extends Component { 
+  state = {
+    courses: [],
+    fetchCourseError: null,
+    selectedCourse: null,
+  }
 
-  return (
-    <Auxi>
-      <NavbarSigned />
-      <BuatGrupForm onSubmit={handleSubmit}>
-        <HeaderImage>
-          <BoxIcon />
-        </HeaderImage>
-        <InputWide 
-          id="namaGrup"
-          type="namaGrup"
-          placeholder="Nama Grup"
-          value={values.namaGrup}
-          onChange={handleChange} />
-        <InputWide 
-          id="deskripsi"
-          type="deskripsi"
-          placeholder="Deskripsi"
-          value={values.deskripsi}
-          onChange={handleChange} />
-        <InputWide 
-          id="belajarApa"
-          type="belajarApa"
-          placeholder="Belajar Apa?"
-          value={values.belajarApa}
-          onChange={handleChange} />
-        <BuatGrupBtn type="submit" >Buat Grup</BuatGrupBtn>
-      </BuatGrupForm>
-    </Auxi>
-  );
-} 
+  fetchOptions = () => {
+    axios({
+      url: '/courses',
+      method: 'GET',
+    })
+    .then(response => {
+      this.setState({courses: [...response.data]})
+    })
+    .catch(error => this.setState({fetchCourseError: error}))
+  }
+
+  componentWillMount() {
+    this.props.checkAuth();
+  }
+
+
+  componentDidMount() {
+    this.fetchOptions()
+  }
+
+  // selected
+  _handleSelect = (selectChoice) => {
+    if(selectChoice.value !== null) {
+      this.props.setFieldValue('courses', selectChoice.value);
+    }
+    this.setState({selectedCourse: selectChoice.value})
+  };
+
+  render() {
+    const {
+      values,
+      handleChange,
+      handleSubmit,
+    } = this.props;
+
+    if(!this.props.isAuth) {
+      return <Redirect to="/login" />
+    }
+
+    let select = <p>options error</p> 
+
+    if(!this.state.fetchCourseError) {
+      const options = this.state.courses.map(option => ({
+        label: option.name,
+        value: option.id,        
+      }))
+
+      select = <Select
+        style={{width: '615px', marginTop: '18px'}}
+        name="courses"
+        value={this.state.selectedCourse}
+        onChange={this._handleSelect} 
+        options={options}
+        clearable={false} />
+    }
+
+    return (
+      <Auxi>
+        <NavbarSigned />
+        <BuatGrupForm onSubmit={handleSubmit}>
+          <HeaderImage>
+            <BoxIcon />
+          </HeaderImage>
+          <InputWide 
+            id="namaGrup"
+            type="namaGrup"
+            placeholder="Nama Grup"
+            value={values.namaGrup}
+            onChange={handleChange} />
+          <InputWide 
+            id="deskripsi"
+            type="deskripsi"
+            placeholder="Deskripsi"
+            value={values.deskripsi}
+            onChange={handleChange} />
+            {select}
+          <BuatGrupBtn type="submit" >Buat Grup</BuatGrupBtn>
+        </BuatGrupForm>
+      </Auxi>
+    );
+  } 
+}
 
 const EnhancedForm = withFormik({
-  mapPropsToValue: () => ({
+  mapPropsToValue: (props) => ({
     namaGrup: '',
     deskripsi: '',
+    course_id: null,
   }),
 
   validationSchema: Yup.object().shape({
@@ -112,11 +171,15 @@ const EnhancedForm = withFormik({
       url: '/groups',
       method: 'POST',
       data: {
-        "id": props.userId,
-        "remember_token": props.token,
         "name": values.namaGrup,
         "desc": values.deskripsi,
+        "course_id": values.courses,
+        "user_id": props.userId,
+      },
+      headers: {
+        "remember_token": props.token,
       }
+
     })
     .then(response => {
       props.history.push('/home')
@@ -131,9 +194,14 @@ const EnhancedForm = withFormik({
 
 const mapStateToProps = ({auth}) => {
   return {
-    userId: auth.user.id,
-    token: auth.user.token,
+    userId: auth.login.user.id,
+    token: auth.login.user.token,
+    isAuth: auth.login.isAuth,
   }
 }
 
-export default connect(mapStateToProps, null)(EnhancedForm);
+const mapDispatchToProps = dispatch => ({
+  checkAuth: () => dispatch(authOperations.checkAuth())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EnhancedForm);

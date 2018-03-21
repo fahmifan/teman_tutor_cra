@@ -68,7 +68,7 @@ const Profile = styled.div`
 export const NavbarSigned = props => {
   return (
     <Nav>
-      <Link to="/">
+      <Link to="/explore">
         <Text bold fontSize={styles.fontSize[2]} color={styles.colors.paleNight}>temanTutor</Text>
       </Link>
       <NavIconContainer>

@@ -6,7 +6,7 @@ const login = ({email, password}) => {
   return dispatch => {
       dispatch(actions.loginStart())
       axios({
-        url:  '/auth', 
+        url:  '/login', 
         method: 'POST',
         data: {
           "email": email,
@@ -37,8 +37,42 @@ const logout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('email');
   localStorage.removeItem('id');
+
+  return {
+    type: types.LOGOUT,
+  }
+}
+
+// check if user still authenticated
+const checkAuth = () => dispatch => {
+  const token = localStorage.getItem('token')
+
+  if(token === null) {
+    dispatch(logout())
+  } else {
+    const expirationDate = new Date(localStorage.getItem('expirationDate'));
+    const currDate = new Date();
+    
+    // if the token is no longer valid it will logged out
+    if(expirationDate <= currDate) {
+      // dispatch(logout())        
+    } else {
+      const userId = localStorage.getItem('id');
+      const email = localStorage.getItem('email')
+
+      const user = {
+        remember_token: token,
+        id: userId,
+        email: email,
+      }
+
+      dispatch(actions.loginSuccess({user}));
+    }
+  }
 }
 
 export default { 
-  login
+  login,
+  logout,
+  checkAuth,
 };

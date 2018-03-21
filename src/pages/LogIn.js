@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import styled from 'styled-components';
 import { withFormik } from 'formik';
 import Yup from 'yup';
@@ -10,12 +11,21 @@ import style from '../assets/style';
 import { operations } from '../store/ducks/auth'
 
 class Login extends Component {
+  componentWillMount() {
+    this.props.checkAuth();
+  }
+
   render() {
     const {
       values,
       handleChange,
       handleSubmit,
+      isAuth,
     } = this.props;
+
+    if(isAuth) {
+      return <Redirect to="/explore" />
+    }
 
     return (
       <Auxi>
@@ -59,7 +69,12 @@ const EnhancedForm = withFormik({
 })(Login)
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (values) => dispatch(operations.login(values))
+  login: (values) => dispatch(operations.login(values)),
+  checkAuth: () => dispatch(operations.checkAuth()),
 })
 
-export default connect(null, mapDispatchToProps)(EnhancedForm)
+const mapStateToProps = ({auth}) => ({
+  isAuth: auth.login.isAuth,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EnhancedForm)

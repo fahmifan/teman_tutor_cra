@@ -28,6 +28,9 @@ const ProfilPic = styled.div`
   background: #fbfbfb;
   border-radius: 5px;
   margin-left: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const Status = styled.div`
@@ -39,11 +42,11 @@ const Status = styled.div`
   margin-left: ${props => props.ml || 2}px;
 `
 
-export const GroupCard = props => (
-  <Container>
-    <ProfilPic />
+export const GroupCard = ({name, key}) => (
+  <Container key={key}>
+    <ProfilPic>{name[0].toUpperCase() || null}</ProfilPic>
     <Status ml={'8'}>
-      <Text bold padding="2" color={style.colors.white} fontSize={style.fontSize[1]} >Group Belajar</Text>
+      <Text bold padding="2" color={style.colors.white} fontSize={style.fontSize[1]} >{name}</Text>
       <Status row ml={'2'}>
         <img src={personIcon}/>
         <Text bold padding="2" color={style.colors.white} fontSize={style.fontSize[0]} >60</Text>
