@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import Auxi from '../hoc/Auxi';
@@ -45,6 +47,12 @@ const NotifContainer = styled.div`
 
 export class Timeline extends Component {
   render() {
+    const {isAuth} = this.props;
+
+    if(!isAuth) {
+      return <Redirect to="/login" />
+    }
+
     return (
       <Auxi>
         <NavbarSigned />
@@ -69,3 +77,8 @@ export class Timeline extends Component {
   }
 }
 
+const mapStateToProps = ({auth}) => ({
+  isAuth: auth.login.isAuth,
+})
+
+export default connect(mapStateToProps)(Timeline)
