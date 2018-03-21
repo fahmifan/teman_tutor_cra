@@ -11,6 +11,10 @@ import style from '../assets/style';
 import { operations } from '../store/ducks/auth'
 
 class Login extends Component {
+  componentWillMount() {
+    this.props.checkAuth();
+  }
+
   render() {
     const {
       values,
@@ -65,7 +69,8 @@ const EnhancedForm = withFormik({
 })(Login)
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (values) => dispatch(operations.login(values))
+  login: (values) => dispatch(operations.login(values)),
+  checkAuth: () => dispatch(operations.checkAuth()),
 })
 
 const mapStateToProps = ({auth}) => ({
