@@ -18,6 +18,7 @@ import {
   ButtonWide,
   Form
 } from '../components';
+import { operations as authOperations } from '../store/ducks/auth'
 
 const BuatGrupForm = Form.extend`
   width: 725px;
@@ -80,7 +81,12 @@ class BuatGrup extends Component {
     })
     .catch(error => this.setState({fetchCourseError: error}))
   }
-  
+
+  componentWillMount() {
+    this.props.checkAuth();
+  }
+
+
   componentDidMount() {
     this.fetchOptions()
   }
@@ -168,6 +174,7 @@ const EnhancedForm = withFormik({
         "name": values.namaGrup,
         "desc": values.deskripsi,
         "course_id": values.courses,
+        "user_id": props.userId,
       },
       headers: {
         "remember_token": props.token,
@@ -193,4 +200,8 @@ const mapStateToProps = ({auth}) => {
   }
 }
 
-export default connect(mapStateToProps, null)(EnhancedForm);
+const mapDispatchToProps = dispatch => ({
+  checkAuth: () => dispatch(authOperations.checkAuth())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EnhancedForm);
