@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -83,6 +84,10 @@ export class Explore extends Component {
   }
 
   render() {
+    if(!this.props.isAuth) {
+      return <Redirect to="/login" />
+    }
+
     let groupList = <Text fontSize="24" style={{textAlign: 'center'}}>Loading...</Text>
 
     if(!this.props.isLoading) {
