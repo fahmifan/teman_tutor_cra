@@ -5,3 +5,5 @@ export {default as Home} from './Home/Home';
 export {default as Timeline} from './Timeline';
 export {default as Explore} from './Explore';
 export {default as BuatGrup} from './BuatGroup';
+export {default as Profile} from './Profile';
+export {default as Tutor} from './Tutor';
