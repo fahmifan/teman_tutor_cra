@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Yup from 'yup'
 import {withFormik} from 'formik'
+import { Link } from 'react-router-dom'
 
 import axios from '../axios';
 import Auxi from '../hoc/Auxi';
@@ -52,6 +53,7 @@ export const UserForm = (props) => {
           onChange={handleChange}
           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" />
         <ButtonWide type="submit">Sign up</ButtonWide>
+        <Text>Become a Tutor <Link to="/tutor" >here</Link></Text>
       </Form>
     </Auxi>
   );
