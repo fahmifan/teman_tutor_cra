@@ -1,6 +1,7 @@
 export { Navbar } from './Navbar/Navbar';
 export { default as NavbarSigned } from './NavbarSigned/NavbarSigned';
 export { Input } from './Input/Input';
+export { InputSmall } from './Input/InputSmall';
 export { SearchInput } from './Input/SearchInput';
 export { Text } from './Text/Text';
 export { ButtonWide } from './ButtonWide/ButtonWide';
@@ -14,3 +15,4 @@ export { TemanTutorGroup } from '../pages/Explore';
 export {default as Form} from './Form/Form';
 export {default as ProfileCard} from './ProfileCard/ProfileCard';
 export {default as ButtonSmall } from './ButtonSmall/ButtonSmall';
+export { FormSmall } from './Form/FormSmall';
