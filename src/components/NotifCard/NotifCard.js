@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import style from '../../assets/style';
-import { Text } from '../Text/Text';
+import { ButtonSmall, Text } from '../index';
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -16,25 +16,10 @@ const Container = styled.div`
   border-bottom: 1px solid #eee;
 `
 
-const BtnSmall = styled.button`
-  box-sizing: border-box;
-  border: none;
-  width: 60px;
-  height: 25px;
-  border-radius: 5px;
-  background-color: ${props => props.color || '#2296F3'};
-  color: ${style.colors.white};
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  margin-bottom: 10px;
-  margin-right: 20px;
-`
-
 export const NotifCard = props => (
   <Container>
     <Text bold>John Doe mengundang anda sebagai tutor</Text>
     <Text>24, Maret 2018</Text>
-    <BtnSmall>Accept</BtnSmall>
+    <ButtonSmall>Accept</ButtonSmall>
   </Container>
 );
