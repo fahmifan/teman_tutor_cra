@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import Pusher from 'pusher-js';
 
+import axios from '../../axios';
 import style from '../../assets/style';
 import Auxi from '../../hoc/Auxi';
 import {Text} from '../../components'
@@ -44,7 +46,7 @@ export const MessageContainer = styled.div`
 `
 
 export const Message = styled.div`
-  width: 330px;
+  max-width: 330px;
   background: linear-gradient(112.02deg, rgba(238, 238, 238, 0.5) 6.3%, #EEEEEE 62.97%);
   border-radius: 10px;
   padding: 5px;
@@ -83,36 +85,93 @@ const SendButton = styled.button`
   font-size: ${style.fontSize[1]}px;
 `
 
-const UserMessage = props => (
-  <Auxi>
-    <MessageContainer position={props.position}>
-      <Message>
-        <Text fontSize={14}>
-          test satu dua tiga empat lima enam  tujuh delapan sembilan sepuluh 123 456&^*@)!).,’ test satu dua tiga empat lima enam  tujuh delapan sembilan sepuluh 123 456&^*@)!).,’ test satu dua tiga empat test satu dua tiga empat lima enam  tujuh delapan sembilan sepuluh 123 456&^*@)!).,’ test satu dua tiga empat lima enam  tujuh 
-        </Text>
-      </Message>
-    </MessageContainer>
-    <MessageContainer position={props.position}>
-      <User>
-        <UserIcon /><Text fontSize={12}>You</Text>
-      </User>
-    </MessageContainer>
-  </Auxi>  
-);
+const UserMessage = ({message, position}) => {
+  return (
+    <Auxi>
+      <MessageContainer position={position}>
+        <Message>
+          <Text fontSize={14}>
+            {message ||'No Message Yet'} 
+          </Text>
+        </Message>
+      </MessageContainer>
+      <MessageContainer position={position}>
+        <User>
+          <UserIcon /><Text fontSize={12}>You</Text>
+        </User>
+      </MessageContainer>
+    </Auxi>  
+)};
 
-const MiddleContent = props => (
-  <MainContainer>
-    <MessageList>
-      <UserMessage position="right"/>
-      <UserMessage position="left"/>
-      <UserMessage position="right"/>
-      <UserMessage position="right"/>
-    </MessageList>
-    <InputContainer>
-      <InputMessage placeholder="write something" />
-      <SendButton>SEND</SendButton>
-    </InputContainer>
-  </MainContainer>
-);
+const pusherCreds = {
+  APP_KEY: '64b6dd6309c94469b313',
+  APP_CLUSTER: 'ap1',
+};
+
+class MiddleContent extends Component {
+  state = {
+    messageInput: '',
+  }
+
+  componentDidMount() {
+    const pusher = new Pusher(pusherCreds.APP_KEY, {
+      cluster: pusherCreds.APP_CLUSTER,
+      encrypted: true,
+    });
+
+    const channel = pusher.subscribe('chat');
+  }
+
+  onSendMessage = (userId, groupId, message) => {
+    axios({
+      url: `/groups/${groupId}/message`,
+      method: 'POST',
+      data: {
+        "user_id": userId,
+        "group_id": groupId,
+        "message": message,
+      } 
+    })
+    .then(res => {
+      const {messageInput} = this.state;
+      this.setState({messageInput: ''});
+      console.log(this.sate.messageInput);
+      this.props.fetchGroupChat(userId, groupId);
+    })
+    .catch(error => console.log(error));
+  } 
+  
+  onInputMessageChange = (event) => {
+    this.setState({messageInput: event.target.value})
+  }
+
+  render() {
+    const { messages, groupId, userId } = this.props; 
+    const { onSendMessage, onInputMessageChange } = this;
+    const { messageInput } = this.state;
+
+    let userMessages = null;
+    if(messages !== null) {
+      userMessages = messages.map(({ message }) => {
+        return <UserMessage 
+          position="right"
+          message={message}
+        />
+      })
+    }
+
+    return (
+      <MainContainer>
+        <MessageList>
+          {userMessages}
+        </MessageList>
+        <InputContainer>
+          <InputMessage value={messageInput} onChange={(event) => onInputMessageChange(event)} placeholder="write something" />
+          <SendButton onClick={() => onSendMessage(userId, groupId, messageInput)}>SEND</SendButton>
+        </InputContainer>
+      </MainContainer>
+    )
+  }
+}
 
 export default MiddleContent;

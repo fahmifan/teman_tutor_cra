@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import axios from '../../axios';
 import style from '../../assets/style';
+
 import { 
   NavbarSigned,
   Background,
@@ -44,6 +46,8 @@ export class Home extends Component {
 
   state = {
     joinedGroups: null,
+    messages: [],
+    groupIdClicked: null,
   }
 
   getUserGroups = (userId, token) => {
@@ -70,18 +74,42 @@ export class Home extends Component {
       userId,
       token,
     } = this.props
-
+    
     this.getUserGroups(userId, token);
   }
+  
+  fetchGroupChat = (userId, groupId) => {
+    axios({
+      url: `/groups/${groupId}/message`,
+      method: 'GET',
+    })
+    .then(res => {
+      this.setState({messages: res.data})
+    })
+  }
 
-  render() {
-  let groups = null;
+  onGroupCardClicked = (userId, groupId) => {
+    this.setState({groupIdClicked: groupId});
+    this.fetchGroupChat(userId, groupId);
+  }
+
+  render() {  
+    const { userId, isAuth } = this.props;
+    const { groupIdClicked } = this.state;
+    const { fetchGroupChat } = this;
+
+    if(!isAuth) {
+      return <Redirect to="/login" />
+    }
+
+    let groups = null;
     if(this.state.joinedGroups !== null) {
       groups = this.state.joinedGroups.map(group => {
         return <GroupCard 
           key={group.id}
           name={group.name}
-          desc={group.desc} />
+          desc={group.desc}
+          clicked={() => this.onGroupCardClicked(userId, group.id)} />
       })
     }
 
@@ -94,7 +122,7 @@ export class Home extends Component {
               {groups}
             </Left>
             <Middle>
-              <MiddleContent />
+              <MiddleContent fetchGroupChat={fetchGroupChat} messages={this.state.messages} userId={userId} groupId={groupIdClicked} />
             </Middle>
             <Right>
               <RightContent />
@@ -109,6 +137,7 @@ export class Home extends Component {
 const mapStateToProps = ({auth}) => ({
   userId: auth.login.user.id,
   token: auth.login.user.token,
+  isAuth: auth.login.isAuth,
 })
 
 export default connect(mapStateToProps, null)(Home);

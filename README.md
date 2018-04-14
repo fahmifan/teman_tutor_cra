@@ -6,23 +6,25 @@
 - [ ] User dapat melihat notifikasi undangan menjadi tutor
 
 ### Home
-- [x] User dapat melihat daftar grup yg diikuti
 - [ ] User dapat melihat daftar chat masin2 grup
 - [ ] User dapat melihat anggota2 dari grup yg dia ikuti
+- [x] User dapat melihat daftar grup yg diikuti
 
 ### Group
 - [x] User dapat menambahkan grup baru
-- [ ] 
+
+## Tutor
+- [x] Pengunjung dapat mendaftar menjadi Tutor
 
 ### Timeline
 - [ ] User dapat membuat agenda
 - [ ] User dapat melihat agenda yg ada setiap bulan
-- [ ] User dapat menambahkan agenda
+- [ ] User dapat menginvite tutor untuk mengisi agenda
 
 ### Auth
 - [x] User login otomatis bila belum logout
 - [x] User dapat login
-- [ ] User dapat logout
+- [x] User dapat logout
 - [x] User dapat membuat akun
 
 ### Landing page & Explore
@@ -32,7 +34,8 @@
     - Explore
 
 ### Explore
-- [ ] User dapat menginvite tutor ke grupnya
+- [x] User dapat join ke group
+- [ ] Group yg sudah `joined` button `join` akan di-disable
 
 ### Static Page & Mockup
 - [ ] Create Agenda

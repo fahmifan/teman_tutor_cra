@@ -11,6 +11,7 @@ import style from '../assets/style';
 import { operations } from '../store/ducks/auth'
 
 class Login extends Component {
+    
   componentWillMount() {
     this.props.checkAuth();
   }

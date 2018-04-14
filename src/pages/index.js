@@ -1,4 +1,4 @@
-export {LandingPage} from './LandingPage';
+export {default as LandingPage} from './LandingPage';
 export {default as LogIn} from './LogIn';
 export {SignUp} from './SignUp';
 export {default as Home} from './Home/Home';

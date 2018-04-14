@@ -13,7 +13,7 @@ export const ButtonMedium = styled.button`
     background-color: ${style.colors.white}
     border: 1px solid ${style.colors.green}`
   }
-  height: 45px;
+  height: ${props => props.height || 45}px;;
   width: ${props => props.width || 140}px;
   font-size: ${style.fontSize[1]}px;
   margin-top: ${style.space[2]}px;

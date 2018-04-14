@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import style from '../../assets/style';
 
@@ -12,8 +12,8 @@ import {
 const Container = styled.div`
   position: relative;
   box-sizing: border-box;
-  width: 260px;
-  height: 330px;
+  width: 150px;
+  height: 200px;
   background-color: ${style.colors.white};
   border-radius: 5px;
   padding: 0;
@@ -74,16 +74,43 @@ const Title = styled.h1`
   margin-bottom: 12px;
   padding: 0 15px;
 `
-const ProfileCard = ({name, invite, isJoined}) => {
-  return (
-    <Container>
-      <BoxImage />
-      <Div>
-        <Text color={style.colors.skyBlue} bold fontSize={36}>{ name || 'John Doe'}</Text>
-        <ButtonMedium onClick={invite}>Hire</ButtonMedium>
-      </Div>
-    </Container>    
-  );
+
+const ButtonJoin = ButtonMedium.extend`
+  height: 50px;
+  margin-top: 0;
+  width: 100%;
+  ${({isInvited}) => isInvited === true ? `
+    background-color: rgba(0,0,0,0);
+    border: 1px solid green;
+    color: green;
+    ` : null }
+`
+
+class ProfileCard extends Component {
+  state = {
+    isInvited: false,
+  }
+
+  setInvited = () => {this.setState({isInvited: !this.state.isInvited})}
+
+  render() {
+    const { name, invite, isJoined } = this.props
+    const { isInvited } = this.state
+
+    if(invite) {
+
+    }
+
+    return (
+      <Container>
+        <BoxImage />
+        <Div>
+          <Text color={style.colors.skyBlue} bold fontSize={18}>{ name || 'John Doe'}</Text>
+          <ButtonJoin isInvited={isInvited} onMouseDown={this.setInvited} onClick={invite} type="button" >{isInvited ? 'Invited':'Invite'}</ButtonJoin>
+        </Div>
+      </Container>    
+    );
+  }
 }
 
 export default ProfileCard;

@@ -42,8 +42,8 @@ const Status = styled.div`
   margin-left: ${props => props.ml || 2}px;
 `
 
-export const GroupCard = ({name, key}) => (
-  <Container key={key}>
+export const GroupCard = ({name, key, clicked}) => (
+  <Container key={key} onClick={clicked}>
     <ProfilPic>{name[0].toUpperCase() || null}</ProfilPic>
     <Status ml={'8'}>
       <Text bold padding="2" color={style.colors.white} fontSize={style.fontSize[1]} >{name}</Text>

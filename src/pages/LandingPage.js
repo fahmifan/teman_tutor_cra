@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
+import { operations } from '../store/ducks/auth/'
 import style from '../assets/style';
 import Auxi from '../hoc/Auxi'; 
 import { Navbar, TemanTutorGroup, ButtonLanding } from '../components';
@@ -69,7 +72,7 @@ const H3Line = styled.div`
 `
 
 const Footer = styled.div`
-    width: 100%
+    width: 100%;
     height: 370px;
     background-color: ${style.colors.darkgrey};
     padding-top: 40px;
@@ -78,7 +81,7 @@ const Footer = styled.div`
 
 const FooterUp = styled.div`
 
-    width: 500px
+    width: 500px;
     height: 370px;
     margin-left: 80px;
     padding 10px;
@@ -118,7 +121,7 @@ const P3 = styled.p`
 
 const FooterDown = styled.div`
 
-    width: 100%
+    width: 100%;
     height: 50px;
     background-color: #2f3235;
     position: absolute;
@@ -126,7 +129,16 @@ const FooterDown = styled.div`
 `
 
 export class LandingPage extends Component {
+
+	componentWillMount() {
+		this.props.checkAuth()
+	}
+
   render() {
+		if(this.props.isAuth) {
+			return <Redirect to="/explore" />
+		}
+
     return (
       <Auxi>
         <Navbar />
@@ -137,8 +149,8 @@ export class LandingPage extends Component {
                         <Img src={temanTutorLogo} />
                     </LandingStartLogo>
                     <LandingStartButton>
-                        <ButtonLanding>Sign Up</ButtonLanding>  
-                        <ButtonLanding>Log In</ButtonLanding>
+                        <Link to="/signup"><ButtonLanding>Sign Up</ButtonLanding></Link>  
+                        <Link to="/login"><ButtonLanding>Log In</ButtonLanding></Link>
                     </LandingStartButton>
                 </LandingStartBox>
             </BgImage>
@@ -172,3 +184,13 @@ export class LandingPage extends Component {
     );
   }
 }
+
+const mapStateToProps = ({auth}) => ({
+  isAuth: auth.login.isAuth,
+})
+
+const mapDispatchToProps = dispatch => ({
+	checkAuth: () => dispatch(operations.checkAuth()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage)
